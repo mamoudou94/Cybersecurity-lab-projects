@@ -37,11 +37,10 @@ My lab is built with **VMware Workstation on Windows 11** and includes the follo
 
 | Project | Description |
 |--------|-------------|
-| [Centralized Log Monitoring & Threat Detection](./Centralized%20Log%20Monitoring%20%26%20Threat%20Detection) | Collect and analyze logs from multiple systems (pfSense, Windows, Ubuntu) using Graylog SIEM. Visualize login attempts, system events, and firewall logs in real-time. |
-| [Detect and Investigate Network Scanning](./Detect%20and%20Investigate%20network%20scan) | Analyze PCAP files captured during Nmap scans using Wireshark and tcpdump. Identify scanning techniques, targeted ports, and infer attacker intent. |
-| [Firewall Rule Testing](./Firewall-Rule-Testing) | Configure and validate pfSense firewall rules to block unauthorized access. Use Nmap from Kali to simulate attacks and verify dropped traffic using pfSense logs. |
+| [Centralized Log Monitoring & Threat Detection](./Centralized%20Log%20Monitoring%20%26%20Threat%20Detection/README.md) | Collect and analyze logs from pfSense, Windows, and Ubuntu using Graylog SIEM. Detect brute-force and suspicious access patterns. |
+| [Detect and Investigate Network Scanning](./Detect%20and%20Investigate%20network%20scan/README.md) | Analyze PCAP files captured during Nmap scans using Wireshark and tcpdump. Identify scanning techniques and attacker behavior. |
+| [Firewall Rule Testing](./Firewall-Rule-Testing/README.md) | Configure and validate pfSense firewall rules to detect and block unauthorized scanning and access attempts. |
 
----
 
 ## 📫 Contact
 
