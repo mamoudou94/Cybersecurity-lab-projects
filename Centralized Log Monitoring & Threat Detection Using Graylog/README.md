@@ -1,30 +1,68 @@
-# Project 2 Malware Download Detection
+# 🛡️ Centralized Log Monitoring & Threat Detection
 
-## 🎯 Objective
-Detect malware file download using Snort and analyze with Wireshark.
+This project showcases a real-world simulation of centralized log collection and analysis using **Graylog SIEM** in a home lab environment. Logs from **Ubuntu**, **Windows 10**, and **pfSense** are forwarded to Graylog and used to detect brute-force attacks and unauthorized access attempts.
 
-## 🧰 Tools Used
-- pfSense (Snort / Suricata)
-- Graylog
-- Wireshark
-- tcpdump
-- nmap / Hydra
+---
 
-## 🪜 Steps
-1. Set up and configure necessary tools.
-2. Simulate the attack or condition.
-3. Monitor logs and network activity.
-4. Analyze and document findings.
-5. Capture packets and generate alerts.
+## 📌 Objective
 
-## 📊 Output
-- Screenshots of alerts or logs
-- PCAP file examples
-- Step-by-step walkthrough with evidence
+Build a centralized monitoring system to:
+- Detect brute-force SSH login attempts
+- Analyze logs from multiple endpoints in real time
+- Simulate attacker behavior using tools like `hydra` from Kali Linux
+- Visualize and respond to events using **Graylog dashboards**
 
-## ✅ Key Skills
-- Network Traffic Analysis
-- Threat Detection
-- SIEM Logging
-- IDS/IPS Tuning
-- Firewall Rule Creation
+---
+
+## 🧰 Tools & Technologies
+
+- **Graylog** (installed on Ubuntu VM)
+- **Syslog & SSH Logs** from Ubuntu
+- **NxLog + Sysmon** on Windows 10
+- **pfSense Logs** (firewall + system)
+- **Hydra** (brute-force tool from Kali)
+- **Log Format**: Syslog and GELF (Graylog Extended Log Format)
+
+---
+
+## 🧪 Lab Architecture
+
+| VM | Role | Notes |
+|----|------|-------|
+| Ubuntu | Graylog SIEM + rsyslog | Receives logs |
+| Windows 10 | Log source | Configured with NxLog + Sysmon |
+| Kali Linux | Attacker | Launches brute-force and scans |
+| pfSense | Firewall + IDS | Forwards logs to Graylog via syslog |
+
+---
+
+## 🔍 Scenario: Detect SSH Brute-Force from Kali
+
+1. **Attack Simulation**
+   - From Kali Linux:
+     ```bash
+     hydra -l testuser -P /usr/share/wordlists/rockyou.txt ssh://<ubuntu-ip>
+     ```
+   - Hydra attempts multiple passwords over SSH, triggering failed login attempts.
+
+2. **Log Forwarding**
+   - Ubuntu logs sent via rsyslog to Graylog (UDP port 514)
+   - Messages include:
+     ```
+     sshd[43229]: Failed password for testuser from 192.168.246.128 port 41380 ssh2
+     ```
+
+3. **Detection in Graylog**
+   - Query used:
+     ```
+     message:"Failed password" AND source:mamoudou-barry-VMware-Virtual-Platform
+     ```
+   - Visualized on Graylog with histogram of login failures
+
+4. **Log Message Example**
+   ### 🔸 Login Failure Logs
+![SSH Failed Password Logs](graylog-ssh1.png)
+
+### 🔸 Graylog Log Message Details
+![Graylog Log Message](graylog-ssh2.png)
+
