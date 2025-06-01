@@ -37,10 +37,8 @@ My lab is built with **VMware Workstation on Windows 11** and includes the follo
 
 | Project | Description |
 |--------|-------------|
-| [Project 1](./Project-1-Internal-Network-Detection) | Internal Network Threat Detection using Suricata and Graylog |
-| [Project 2](./Project-2-Malware-Download-Detection) | Detect Malware Downloads with Snort and Wireshark |
-| [Project 3](./Project-3-Brute-Force-Detection) | SSH Brute Force Detection and Blocking with Graylog |
-| [Project 4](./Project-4-Real-World-PCAP-Analysis) | Analyze Real-World Attacks from PCAP Files |
+| [Project 1](./Project-1-Internal-Network-Detection) | Detect and Investigate network scan & brute force attack using Suricata and Wireshark |
+| [Project 2](./Project-2-Malware-Download-Detection) | Centralized Log Monitoring & Threat Detection Using Graylog |
 | [Project 5](./Project-5-Firewall-Rule-Testing) | Implement and Test pfSense Firewall Rules |
 
 ---
