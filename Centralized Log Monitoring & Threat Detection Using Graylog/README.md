@@ -1,68 +1,126 @@
-# 🛡️ Centralized Log Monitoring & Threat Detection
 
-This project showcases a real-world simulation of centralized log collection and analysis using **Graylog SIEM** in a home lab environment. Logs from **Ubuntu**, **Windows 10**, and **pfSense** are forwarded to Graylog and used to detect brute-force attacks and unauthorized access attempts.
+# 🛡️ Centralized Log Monitoring & Threat Detection with Splunk
+
+This project simulates an enterprise-level Security Operations Center (SOC) using **Splunk Enterprise** as the centralized log monitoring platform. Logs from **Ubuntu**, **Windows 10**, and **pfSense** are collected and analyzed to detect brute-force attacks and unauthorized access attempts. The attacker machine uses **Kali Linux** and the `hydra` tool to perform SSH brute-force attempts.
 
 ---
 
-## 📌 Objective
+## 🎯 Objectives
 
-Build a centralized monitoring system to:
-- Detect brute-force SSH login attempts
-- Analyze logs from multiple endpoints in real time
-- Simulate attacker behavior using tools like `hydra` from Kali Linux
-- Visualize and respond to events using **Graylog dashboards**
+- 📥 Centralize log collection from multiple operating systems and firewall
+- 🔐 Detect brute-force SSH login attempts
+- 🔎 Correlate and analyze logs from multiple systems
+- 🧪 Simulate real-world attacker behavior
+- 📊 Visualize threats using Splunk dashboards
 
 ---
 
 ## 🧰 Tools & Technologies
 
-- **Graylog** (installed on Ubuntu VM)
-- **Syslog & SSH Logs** from Ubuntu
-- **NxLog + Sysmon** on Windows 10
-- **pfSense Logs** (firewall + system)
-- **Hydra** (brute-force tool from Kali)
-- **Log Format**: Syslog and GELF (Graylog Extended Log Format)
+| Tool / Tech        | Purpose                                 |
+|--------------------|-----------------------------------------|
+| **Splunk Enterprise** | SIEM for log collection & analysis     |
+| **Ubuntu**         | Log source + Splunk deployment          |
+| **Windows 10**     | Log source with **Sysmon** + **NxLog**  |
+| **pfSense**        | Network firewall and log forwarder      |
+| **Kali Linux**     | Attacker machine with **Hydra**         |
+| **Syslog / JSON**  | Log formats for ingestion               |
 
 ---
 
-## 🧪 Lab Architecture
+## 🗺️ Lab Architecture
 
-| VM | Role | Notes |
-|----|------|-------|
-| Ubuntu | Graylog SIEM + rsyslog | Receives logs |
-| Windows 10 | Log source | Configured with NxLog + Sysmon |
-| Kali Linux | Attacker | Launches brute-force and scans |
-| pfSense | Firewall + IDS | Forwards logs to Graylog via syslog |
+| VM           | Role                      | Description                                |
+|--------------|---------------------------|--------------------------------------------|
+| **Ubuntu**   | Splunk Server + Log Source | Hosts Splunk; collects syslog and SSH logs |
+| **Windows 10** | Endpoint                  | Sends Sysmon and security logs via NxLog   |
+| **Kali Linux** | Attacker                  | Launches brute-force SSH attacks           |
+| **pfSense**  | Firewall + IDS (optional Suricata) | Sends system + firewall logs         |
 
 ---
 
-## 🔍 Scenario: Detect SSH Brute-Force from Kali
+## 🔐 Threat Simulation: SSH Brute-Force Attack
 
-1. **Attack Simulation**
-   - From Kali Linux:
-     ```bash
-     hydra -l testuser -P /usr/share/wordlists/rockyou.txt ssh://<ubuntu-ip>
-     ```
-   - Hydra attempts multiple passwords over SSH, triggering failed login attempts.
+### 1️⃣ Launch Attack from Kali
 
-2. **Log Forwarding**
-   - Ubuntu logs sent via rsyslog to Graylog (UDP port 514)
-   - Messages include:
-     ```
-     sshd[43229]: Failed password for testuser from 192.168.246.128 port 41380 ssh2
-     ```
+From Kali Linux, use Hydra to simulate SSH brute-force:
 
-3. **Detection in Graylog**
-   - Query used:
-     ```
-     message:"Failed password" AND source:mamoudou-barry-VMware-Virtual-Platform
-     ```
-   - Visualized on Graylog with histogram of login failures
+```bash
+hydra -l testuser -P /usr/share/wordlists/rockyou.txt ssh://<ubuntu-ip>
+```
 
-4. **Log Message Example**
-   ### 🔸 Login Failure Logs
+- This command tries multiple passwords over SSH.
+- It triggers failed login attempts on the Ubuntu server.
+
+---
+
+### 2️⃣ Log Collection
+
+#### ✅ Ubuntu Logging
+
+- Ubuntu forwards logs using `rsyslog` to Splunk (TCP port `1514`).
+- Example SSH log entry:
+
+```log
+sshd[118063]: Failed password for testuser from 192.168.20.111 port 60500 ssh2
+```
+
+#### ✅ Windows Logging
+
+- Windows 10 uses **Sysmon** and **NxLog** to send event logs in JSON format.
+- Logs include process creation, logon events, and network connections.
+
+#### ✅ pfSense Logging
+
+- pfSense sends firewall, DHCP, and system logs via BSD Syslog format to Splunk.
+
+---
+
+### 3️⃣ Splunk Detection SPL Query
+
+Use this SPL query to detect SSH login attempts and determine if any were successful:
+
+```spl
+index=main ("Failed password" OR "Accepted password")
+| rex "for (?<user>\w+)"
+| eval status=case(
+    like(_raw, "%Failed password%"), "fail",
+    like(_raw, "%Accepted password%"), "success",
+    true(), "other"
+)
+| stats 
+    count(eval(status="fail")) as failed_attempts,
+    count(eval(status="success")) as successful_logins 
+  by user
+| eval breached=if(successful_logins > 0, "Yes", "No")
+| table user, failed_attempts, successful_logins, breached
+```
+
+This query helps visualize login behavior and identify breached accounts.
+
+---
+
+## 📸 Sample Log Screenshots
+
+### 🔹 Failed SSH Login Attempt in Splunk
+
 ![SSH Failed Password Logs](graylog-ssh1.png)
 
-### 🔸 Graylog Log Message Details
+---
+
+### 🔹 Detailed Raw Log View (from Graylog)
+
 ![Graylog Log Message](graylog-ssh2.png)
 
+---
+
+## ✅ Summary
+
+This lab demonstrates how a security team can:
+
+- 📡 Aggregate and normalize log data from various platforms
+- 🔍 Detect brute-force and unauthorized access attempts
+- 🧠 Correlate events for better situational awareness
+- 📈 Build dashboards for threat visibility
+
+---
