@@ -102,25 +102,34 @@ This query helps visualize login behavior and identify breached accounts.
 
 ## 📸 Sample Log Screenshots
 
-### 🔹 Failed SSH Login Attempt in Splunk
+### 🔹 Simulation
 
-![SSH Failed Password Logs](graylog-ssh1.png)
+![SSH Failed Password Logs](brute_force_attack.png)
 
 ---
 
-### 🔹 Detailed Raw Log View (from Graylog)
+### 🔹 Failed SSH Login Attempt in Splunk
 
-![Graylog Log Message](graylog-ssh2.png)
+![SSH Failed Password Logs](messages_detected.png)
+
+---
+
+### 🔹 Splunk Dashboard
+
+![Graylog Log Message](splunk_dashboard.png)
 
 ---
 
 ## ✅ Summary
 
-This lab demonstrates how a security team can:
+Through this project, I gained hands-on experience building a centralized log monitoring and threat detection lab using **Splunk Enterprise**. I learned how to:
 
-- 📡 Aggregate and normalize log data from various platforms
-- 🔍 Detect brute-force and unauthorized access attempts
-- 🧠 Correlate events for better situational awareness
-- 📈 Build dashboards for threat visibility
+- 🔧 Set up and configure **log forwarding** from Ubuntu (rsyslog), Windows 10 (NxLog + Sysmon), and pfSense firewall.
+- 🛠 Simulate real-world **brute-force SSH attacks** using **Hydra** on Kali Linux to test detection capabilities.
+- 🔍 Write and fine-tune **Splunk SPL queries** to detect failed and successful login attempts across systems.
+- 📊 Visualize security events and log patterns through **Splunk dashboards**.
+- 🔗 Understand how different logs (system, firewall, endpoint) **correlate** to reveal potential intrusions.
+- 🧠 Develop a deeper understanding of SIEM fundamentals and how logs play a critical role in **incident detection and response**.
 
----
+This lab strengthened my practical skills in **cybersecurity monitoring**, **log analysis**, and **SIEM configuration**, and prepared me to approach real-world SOC analyst tasks with confidence.
+
