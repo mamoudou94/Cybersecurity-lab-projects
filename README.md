@@ -1,51 +1,57 @@
 # 🔐 Cybersecurity Lab Projects – Mamoudou Barry
 
-Welcome to my SOC Analyst Lab Projects portfolio. This repository contains real-world, enterprise-grade projects built using a custom virtual home lab environment. The purpose of these projects is to demonstrate hands-on cybersecurity skills relevant to SOC roles and blue team operations, including intrusion detection, network traffic analysis, firewall configuration, and SIEM alerting.
+Welcome to my SOC Analyst Lab portfolio. This repository showcases real-world, enterprise-grade projects built within a custom virtual home lab. Each project demonstrates operational cybersecurity skills relevant to SOC, blue team, and security engineering roles—including intrusion detection, alert triage, secure cloud architecture, and SIEM alerting with threat correlation.
 
 ---
 
 ## 👨🏽‍💻 About Me
 
-I’m **Mamoudou Barry**, a cybersecurity professional with 3+ years of experience in software engineering and a deep focus on cloud security and threat detection. I’ve transitioned into cybersecurity with a passion for defending systems, analyzing network traffic, and responding to real-world security events. 
+I’m **Mamoudou Barry**, a cybersecurity professional with 3+ years of software engineering experience, transitioning into threat detection and defensive security engineering. I specialize in secure coding, SIEM pipelines, and operational alert handling across on-prem and cloud environments.
 
-I hold an **AWS Cloud Practitioner certification** and am actively pursuing **CompTIA Security+**. I’ve completed secure cloud application deployments and ethical hacking labs in a controlled environment to understand adversary behavior and defensive engineering.
+I hold certifications in **AWS Cloud Practitioner** and **CompTIA Security+**, and I’m actively pursuing **CySA+** to deepen my threat analysis and incident response capabilities. My work includes cloud-native development, secure REST APIs, adversary simulations, and alert triage using Elastic and Splunk.
 
 ---
 
 ## 🧠 Skills & Tools
 
-- **Security Monitoring & Analysis**: Wireshark, tcpdump, Graylog, pfSense IDS/IPS (Snort & Suricata)
-- **Offensive Security Tools**: Nmap, Hydra, Metasploit, Msfvenom, Burp Suite
-- **Cloud Security**: AWS IAM, EC2, Lambda, S3, VPC, API Gateway, CloudTrail, CloudWatch
-- **Programming**: Python, Java, TypeScript
-- **Infrastructure**: Docker, Git, Linux, REST APIs, SQLite, MySQL
+- **Threat Detection & Analysis**: Security Onion (Elastic Stack, Kibana), Splunk, Suricata, Wireshark, Tcpdump, Graylog
+- **SIEM & Alerting**: SPL queries, Elastic rules, pfSense IDS/IPS, log correlation and dashboarding
+- **Offensive Security Simulation**: Nmap, Hydra, Msfvenom, Metasploit, Burp Suite
+- **Cloud Security & Architecture**: AWS IAM, EC2, Lambda, S3, VPC, API Gateway, CloudTrail, CloudWatch
+- **Programming & DevSecOps**: Python, Java, TypeScript, Docker, Linux, REST APIs, CI/CD
+- **Database & Storage**: MySQL, SQLite
 
 ---
 
 ## 🧪 Lab Environment
 
-My lab is built with **VMware Workstation on Windows 11** and includes the following virtual machines:
+Built on **VMware Workstation (Windows 11)** with the following virtualized systems:
 
-- `pfSense` (2 NICs: NAT + Host-Only) with Suricata and Snort installed
-- `Kali Linux` (1 NIC: Host-Only) for attacker simulations
-- `Ubuntu` (1 NIC: Host-Only) for SIEM (Graylog), servers, or analysis
-- `Windows 10` (1 NIC: Host-Only) for victim/end-user simulation
+- `Security Onion`: Elastic Stack (Kibana, Elasticsearch, Logstash, Wazuh) for alerting, triage, and case creation
+- `pfSense`: Dual NIC setup (NAT + Host-Only) with IDS/IPS (Snort, Suricata)
+- `Kali Linux`: Attacker simulation environment (host-only)
+- `Ubuntu`:  Victim & SIEM pipeline (Splunk, Graylog), syslog forwarding, and plugin analysis
+- `Windows 10`: Victim simulation for phishing and lateral movement testing
 
 ---
 
 ## 📁 Projects
 
-| Folder Name                                   | Description |
-|----------------------------------------------|-------------|
-| Centralized Log Monitoring & Threat Detection | Collect and analyze logs from pfSense, Windows, and Ubuntu using Graylog SIEM. Detect brute-force and suspicious access patterns. |
-| Detect and Investigate Network Scan           | Analyze PCAP files captured during Nmap scans using Wireshark and tcpdump. Identify scanning techniques and attacker behavior. |
-| Firewall-Rule-Testing                         | Configure and validate pfSense firewall rules to detect and block unauthorized scanning and access attempts. |
+| Folder Name                                         | Description |
+|----------------------------------------------------|-------------|
+| Centralized Log Monitoring & Threat Detection       | Built Splunk and Graylog SIEM pipelines with pfSense log ingestion. Created SPL queries to detect brute-force attacks and access anomalies. |
+| Elastic Alert Triage & Case Management              | Triaging alerts generated in Security Onion using Elastic/Kibana. Creating and managing incident cases based on threat signatures. |
+| Network Scan Detection & Analysis                   | Captured and investigated Nmap traffic using Wireshark and tcpdump. Identified scan types and attacker behavior. |
+| Firewall Rule Testing & Validation                  | Configured pfSense firewall policies. Simulated intrusions to test and validate detection in Suricata and Snort. |
+| Ethical Phishing Simulation                         | Used Msfvenom payloads and Metasploit in a secure environment to simulate phishing attacks and validate detection pipelines. |
+
+---
 
 ## 📫 Contact
 
-- 🖇 [LinkedIn](https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME)
+- 🖇 [LinkedIn](https://www.linkedin.com/in/mamoudou-barry-5a211321a)
 - 📧 Email: mamoudoudjogobarry@gmail.com
 
 ---
 
-> 🔐 This repository is meant for educational and professional demonstration purposes only. All tests and attacks were performed in a fully isolated lab.
+> ⚠️ All simulations were performed in a fully isolated environment for educational and professional validation only. Projects reflect hands-on implementation aligned with SOC, SIEM roles.
