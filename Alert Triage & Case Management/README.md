@@ -27,14 +27,14 @@ The goal is to detect, investigate, and respond to simulated malicious activity 
 ## 📊 Alert Overview
 
 ### Kibana Dashboard
-![Kibana Dashboard](images/Kibana-dashboard.png)
+![Kibana Dashboard](Kibana-dashboard.png)
 
 > Kibana showed **57 high-severity alerts** within the last 2 hours, indicating active malicious behavior.
 
 ---
 
 ### Security Onion Alerts
-![Security Onion Alerts](images/SecOnion-alert.png)
+![Security Onion Alerts](SecOnion-alert.png)
 
 Security Onion confirmed the presence of multiple high-priority alerts, including potential malware activity and unusual file downloads.
 
@@ -44,7 +44,7 @@ Security Onion confirmed the presence of multiple high-priority alerts, includin
 
 ### Initial Alert: Zbot C2 Communication
 
-![Zbot C2 Alert](images/rule-alert.png)
+![Zbot C2 Alert](rule-alert.png)
 
 - **Alert**: `ET MALWARE Zbot POST Request to C2`
 - **Behavior**: Attempted outbound HTTP POST to `homesitetoo.com`
@@ -54,7 +54,7 @@ Security Onion confirmed the presence of multiple high-priority alerts, includin
 
 ### Case Management
 
-![Case Overview](images/case.png)
+![Case Overview](case.png)
 
 - Created a case for IP `192.168.3.35`
 - Collected domains, source/destination IPs, and timestamps
@@ -64,7 +64,7 @@ Security Onion confirmed the presence of multiple high-priority alerts, includin
 
 ### File Download & Correlation
 
-![Correlated Alerts](images/corelated-dashboard.png)
+![Correlated Alerts](corelated-dashboard.png)
 
 - Alert: `ET INFO PE EXE or DLL Windows file download HTTP`
 - Decoded data showed EXE downloaded over HTTP
@@ -74,7 +74,7 @@ Security Onion confirmed the presence of multiple high-priority alerts, includin
 
 ### Zeek File Analysis
 
-![Zeek File Logs](images/zeek.png)
+![Zeek File Logs](zeek.png)
 
 - Discovered downloaded file and hash values (MD5/SHA1)
 - Added observables to the incident case
@@ -83,7 +83,7 @@ Security Onion confirmed the presence of multiple high-priority alerts, includin
 
 ### VirusTotal Hash Verification
 
-![VirusTotal Scan](images/virustotal.png)
+![VirusTotal Scan](virustotal.png)
 
 - Both hashes flagged as malicious
 - Confirmed file as part of a malware campaign
@@ -107,19 +107,3 @@ Security Onion confirmed the presence of multiple high-priority alerts, includin
 - 🧠 Review firewall rules and deploy EDR across environment
 
 ---
-
-## 📁 Folder Structure
-
-```bash
-Alert-Triage-Lab/
-├── README.md
-├── images/
-│   ├── Kibana-dashboard.png
-│   ├── SecOnion-alert.png
-│   ├── rule-alert.png
-│   ├── case.png
-│   ├── corelated-dashboard.png
-│   ├── zeek.png
-│   └── virustotal.png
-└── cases/
-    └── case-192.168.3.35.md
