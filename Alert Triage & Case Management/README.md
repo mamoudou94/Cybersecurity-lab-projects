@@ -34,7 +34,7 @@ The goal is to detect, investigate, and respond to simulated malicious activity 
 ---
 
 ### Security Onion Alerts
-![Security Onion Alerts](secOnion.png)
+![Security Onion Alerts](secOnion-alert.png)
 
 Security Onion confirmed the presence of multiple high-priority alerts, including potential malware activity and unusual file downloads.
 
