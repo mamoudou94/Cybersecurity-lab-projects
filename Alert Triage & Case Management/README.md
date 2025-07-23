@@ -27,14 +27,14 @@ The goal is to detect, investigate, and respond to simulated malicious activity 
 ## 📊 Alert Overview
 
 ### Kibana Dashboard
-![Kibana Dashboard](Kibana-dashboard.png)
+![Kibana Dashboard](kibana-dashboard.png)
 
 > Kibana showed **57 high-severity alerts** within the last 2 hours, indicating active malicious behavior.
 
 ---
 
 ### Security Onion Alerts
-![Security Onion Alerts](SecOnion-alert.png)
+![Security Onion Alerts](secOnion.png)
 
 Security Onion confirmed the presence of multiple high-priority alerts, including potential malware activity and unusual file downloads.
 
